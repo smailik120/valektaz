@@ -16,8 +16,10 @@ public class Scene {
         this.entities = entities;
     }
 
-    public Scene(ArrayList<Entity> entities) {
+    public Scene(ArrayList<Entity> entities,String name)
+    {
         this.entities = entities;
+        setName(name);
     }
 
     public void setName(String name) {
