@@ -12,12 +12,14 @@ import java.util.LinkedHashMap;
 public class ManagerBuilder {
     private SystemManager services;
     public ManagerBuilder(ArrayList<Entity> entities) {
-        HashMap<Pair<String, String>, CollisionAction> collisions = new HashMap<Pair<String, String>, CollisionAction>();
+        HashMap<Pair<String, String>, CollisionAction> collisions;
         LinkedHashMap systems = new LinkedHashMap<String, Manager>();
-        services = new SystemManager(systems);
+        LinkedHashMap activeSystems = new LinkedHashMap<String, Manager>();
+        services = new SystemManager(systems, activeSystems);
         Camera camera = new Camera(entities);
         CameraSystem cameraSystem = new CameraSystem(camera);
         MoveSystem moveSystem = new MoveSystem(entities);
+        collisions = new BuilderCollision().getCollisions();
         CollisionSystem collisionSystem = new CollisionSystem(entities, collisions);
         services.addManager("cameraSystem", cameraSystem);
         services.addManager("moveSystem", moveSystem);
@@ -31,4 +33,5 @@ public class ManagerBuilder {
     public void setServices(SystemManager services) {
         this.services = services;
     }
+
 }

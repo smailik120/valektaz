@@ -10,12 +10,11 @@ import java.util.LinkedHashMap;
 public class SceneBuilder {
     private ArrayList<Scene> scenes;
     private Scene currentScene;
-    public  SceneBuilder(LinkedHashMap<String, ArrayList<Entity>> entities) {
+    public  SceneBuilder(ArrayList<ArrayList<Entity>> entities) {
         scenes = new ArrayList<Scene>();
-        for(String name: entities.keySet()) {
-            scenes.add(new Scene(entities.get(name), name));
-        }
-        currentScene = scenes.get(0);
+        Scene start = new Scene(entities.get(0), "start");
+        start.setGamePlay(true);
+        scenes.add(start);
     }
 
     public ArrayList<Scene> getScenes() {

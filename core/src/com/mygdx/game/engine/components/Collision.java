@@ -4,7 +4,7 @@ import com.mygdx.game.engine.entities.Entity;
 
 import java.util.ArrayList;
 
-public class Collision {
+public class Collision implements Component{
     private ArrayList<Entity> entities;
 
     public Collision(ArrayList<Entity> entities) {
