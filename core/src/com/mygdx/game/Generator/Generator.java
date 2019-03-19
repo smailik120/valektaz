@@ -1,6 +1,7 @@
 package com.mygdx.game.Generator;
 
 import com.mygdx.game.engine.Engine;
+import com.mygdx.game.engine.builders.Build;
 import com.mygdx.game.engine.builders.EntityBuilders.EnemyBuilder;
 import com.mygdx.game.engine.builders.EntityBuilders.EntityBuilder;
 import com.mygdx.game.engine.components.Position;
@@ -29,30 +30,41 @@ public class Generator {
         int randomValue = 600;
         int startValue = 400;
         int counter = 0;
+        int numberType = builders.size();
         Random random = new Random(new Date().getTime());
         for(int i = 1; i <= numberEntity ; i++) {
-            EnemyBuilder builder = (EnemyBuilder) builders.get("enemy");
-            Entity first = builder.getPlayer();
-            Position positionFirst = null;
-            Size sizeFirst = null;
-            if(first.validate("position")) {
-                positionFirst = (Position) first.getComponent("position");
-                sizeFirst = (Size) (first.getComponent("size"));
-                positionFirst.setPosX(random.nextInt(randomValue) + startValue);
-            }
-            for (Entity second : scene.getEntities()) {
-                Position positionSecond = (Position) second.getComponent("position");
-                Size sizeSecond = (Size) (second.getComponent("size"));
-                if(minDistance <= positionSecond.getPosX() - (positionFirst.getPosX() + sizeFirst.getWidth()) || minDistance <= positionFirst.getPosX() - (positionSecond.getPosX() + sizeSecond.getWidth())) {
-                    counter++;
+            EntityBuilder builder = null;
+            int numberCurrentType = random.nextInt(numberType);
+            for (String current : builders.keySet()) {
+                counter++;
+                if (counter == numberCurrentType && !current.equals("player")) {
+                    builder = builders.get(current);
                 }
             }
-            if(counter == scene.getEntities().size()) {
-                ArrayList<Entity> entities = scene.getEntities();
-                entities.add(first);
-                System.out.println("yep");
-            }
             counter = 0;
+            if (builder != null) {
+                Entity first = builder.getEntity();
+                Position positionFirst = null;
+                Size sizeFirst = null;
+                if (first.validate("position")) {
+                    positionFirst = (Position) first.getComponent("position");
+                    sizeFirst = (Size) (first.getComponent("size"));
+                    positionFirst.setPosX(random.nextInt(randomValue) + startValue);
+                }
+                for (Entity second : scene.getEntities()) {
+                    Position positionSecond = (Position) second.getComponent("position");
+                    Size sizeSecond = (Size) (second.getComponent("size"));
+                    if (minDistance <= positionSecond.getPosX() - (positionFirst.getPosX() + sizeFirst.getWidth()) || minDistance <= positionFirst.getPosX() - (positionSecond.getPosX() + sizeSecond.getWidth())) {
+                        counter++;
+                    }
+                }
+                if (counter == scene.getEntities().size()) {
+                    ArrayList<Entity> entities = scene.getEntities();
+                    entities.add(first);
+                    System.out.println("yep");
+                }
+                counter = 0;
+            }
         }
     }
 }

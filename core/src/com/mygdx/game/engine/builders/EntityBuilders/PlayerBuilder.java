@@ -2,6 +2,7 @@ package com.mygdx.game.engine.builders.EntityBuilders;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.engine.builders.Build;
 import com.mygdx.game.engine.components.*;
 import com.mygdx.game.engine.entities.Entity;
 
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 public class PlayerBuilder implements EntityBuilder {
     private Entity player;
 
-    public Entity getPlayer() {
+    @Override
+    public Entity getEntity() {
+        build();
         return player;
     }
 
@@ -29,4 +32,8 @@ public class PlayerBuilder implements EntityBuilder {
     }
 
 
+    @Override
+    public void build() {
+
+    }
 }
