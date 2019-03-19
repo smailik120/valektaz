@@ -22,7 +22,8 @@ public class BuilderManagersForScenes {
         ArrayList<Manager> current = new ArrayList<Manager>();
         current.add(manager.getSystemByName("cameraSystem"));
         current.add(manager.getSystemByName("moveSystem"));
-        current.add(manager.getSystemByName("collisionSystem"));
+        //current.add(manager.getSystemByName("collisionSystem"));
+        current.add(manager.getSystemByName("generateSystem"));
         managersForScene.put("start", current);
     }
 

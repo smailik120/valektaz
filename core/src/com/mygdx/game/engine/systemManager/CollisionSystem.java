@@ -24,17 +24,14 @@ public class CollisionSystem implements Manager {
             for (Entity entitySecond : entities) {
                 if (!entityFirst.equals(entitySecond)) {
                     if (collide(entityFirst, entitySecond)) {
-                        if (entityFirst.validate("collision")) {
                             Collision collision = (Collision) entityFirst.getComponent("collision");
                             ArrayList<Entity> collisionList = collision.getEntities();
                             collisionList.add(entitySecond);
-                        }
                     }
                 }
             }
         }
         for (Entity entity : collisionEntities) {
-            if (entity.validate("collision")) {
                 Collision collision = (Collision) entity.getComponent("collision");
                 if(collision.getEntities() != null) {
                     ArrayList<Entity> collisionList = collision.getEntities();
@@ -47,7 +44,6 @@ public class CollisionSystem implements Manager {
                     }
                     collision.setEntities(new ArrayList<Entity>());
                 }
-            }
         }
     }
     public boolean collide(Entity first, Entity second) {

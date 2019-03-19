@@ -3,11 +3,13 @@ package com.mygdx.game.engine.systemManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.engine.Engine;
 import com.mygdx.game.engine.components.Picture;
 import com.mygdx.game.engine.components.Position;
 import com.mygdx.game.engine.components.Size;
 import com.mygdx.game.engine.components.Speed;
 import com.mygdx.game.engine.entities.Entity;
+import com.mygdx.game.engine.scene.Scene;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,8 @@ public class Camera {
     public void update() {
         Gdx.gl.glClearColor(0,0,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Scene scene = Engine.getCard().getCurrentScene();
+        entities = scene.getEntities();
         for (Entity entity : entities) {
             Position position = (Position) entity.getComponent("position");
             Size size = (Size) entity.getComponent("size");

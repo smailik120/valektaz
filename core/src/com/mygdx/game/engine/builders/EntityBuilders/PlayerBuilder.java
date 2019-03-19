@@ -7,7 +7,7 @@ import com.mygdx.game.engine.entities.Entity;
 
 import java.util.ArrayList;
 
-public class PlayerBuilder {
+public class PlayerBuilder implements EntityBuilder {
     private Entity player;
 
     public Entity getPlayer() {
@@ -24,7 +24,7 @@ public class PlayerBuilder {
         player.addComponent("position", new Position(0, 0));
         player.addComponent("size", new Size(30, 30));
         player.addComponent("speed", new Speed(new Vector2(1, 0)));
-        player.addComponent("picture", new Picture(new Texture("C:\\images\\b.bmp")));
+        player.addComponent("picture", new Picture(new Texture("C:\\images\\b4.bmp")));
         player.setType("player");
     }
 

@@ -1,4 +1,5 @@
 package com.mygdx.game.engine.builders;
+import com.mygdx.game.Generator.Generator;
 import com.mygdx.game.engine.Engine;
 import com.mygdx.game.engine.Map.Card;
 import com.mygdx.game.engine.builders.EntityBuilders.EnemyBuilder;

@@ -8,10 +8,13 @@ import com.mygdx.game.engine.components.Size;
 import com.mygdx.game.engine.components.Speed;
 import com.mygdx.game.engine.entities.Entity;
 
-public class EnemyBuilder {
+import static com.badlogic.gdx.physics.box2d.Box2D.init;
+
+public class EnemyBuilder implements EntityBuilder{
     private Entity enemy;
 
     public Entity getPlayer() {
+        init();
         return enemy;
     }
 
@@ -20,6 +23,9 @@ public class EnemyBuilder {
     }
 
     public EnemyBuilder() {
+        init();
+    }
+    private void init() {
         enemy = new Entity();
         enemy.addComponent("position", new Position(400, 0));
         enemy.addComponent("size", new Size(50, 100));

@@ -1,5 +1,6 @@
 package com.mygdx.game.engine.builders;
 
+import com.mygdx.game.Generator.Generator;
 import com.mygdx.game.engine.Actions.CollisionAction;
 import com.mygdx.game.engine.entities.Entity;
 import com.mygdx.game.engine.systemManager.*;
@@ -21,9 +22,13 @@ public class ManagerBuilder {
         MoveSystem moveSystem = new MoveSystem(entities);
         collisions = new BuilderCollision().getCollisions();
         CollisionSystem collisionSystem = new CollisionSystem(entities, collisions);
+        BuilderMapEntity buildersEntity = new BuilderMapEntity();
+        Generator generator = new Generator(buildersEntity.getBuilders());
+        GenerateSystem generateSystem = new GenerateSystem(generator);
         services.addManager("cameraSystem", cameraSystem);
         services.addManager("moveSystem", moveSystem);
-        services.addManager("collisionSystem", collisionSystem);
+        //services.addManager("collisionSystem", collisionSystem);
+        services.addManager("generateSystem", generateSystem);
     }
 
     public SystemManager getServices() {

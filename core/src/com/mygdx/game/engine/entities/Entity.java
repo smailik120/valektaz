@@ -50,4 +50,11 @@ public class Entity {
        }
        return false;
     }
+
+    public Entity copy(Entity entity) {
+        HashMap<String, Component> comp = entity.getContainer();
+        Entity entity1 = new Entity();
+        entity1.setContainer(entity.getContainer());
+        return entity1;
+    }
 }
