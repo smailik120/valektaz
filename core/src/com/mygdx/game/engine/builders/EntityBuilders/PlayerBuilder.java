@@ -27,6 +27,7 @@ public class PlayerBuilder implements EntityBuilder {
         player.addComponent("position", new Position(0, 0));
         player.addComponent("size", new Size(30, 30));
         player.addComponent("speed", new Speed(new Vector2(1, 0)));
+        player.addComponent("mass", new Mass(0.3f));
         player.addComponent("picture", new Picture(new Texture("C:\\images\\b4.bmp")));
         player.setType("player");
     }

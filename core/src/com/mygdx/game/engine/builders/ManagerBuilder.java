@@ -24,9 +24,11 @@ public class ManagerBuilder {
         CollisionSystem collisionSystem = new CollisionSystem(entities, collisions);
         BuilderMapEntity buildersEntity = new BuilderMapEntity();
         Generator generator = new Generator(buildersEntity.getBuilders());
+        GravitationSystem gravitationSystem = new GravitationSystem(entities);
         GenerateSystem generateSystem = new GenerateSystem(generator);
         services.addManager("cameraSystem", cameraSystem);
         services.addManager("moveSystem", moveSystem);
+        services.addManager("gravitationSystem", gravitationSystem);
         //services.addManager("collisionSystem", collisionSystem);
         services.addManager("generateSystem", generateSystem);
     }

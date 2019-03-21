@@ -18,7 +18,6 @@ public class Builder {
         ArrayList<ArrayList<Entity>> entitiesForScenes = new  ArrayList<ArrayList<Entity>>();
         ArrayList<Entity> entities = new ArrayList<Entity>();
         entities.add(new PlayerBuilder().getEntity());
-        entities.add(new EnemyBuilder().getEntity());
         entitiesForScenes.add(entities);
         card = new Card(new SceneBuilder(entitiesForScenes).getScenes());
         ManagerBuilder managerBuilder = new ManagerBuilder(card.getCurrentScene().getEntities());

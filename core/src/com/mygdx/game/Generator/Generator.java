@@ -26,9 +26,6 @@ public class Generator {
         scene = Engine.getCard().getCurrentScene();
         time = System.currentTimeMillis()/1000;
         int numberEntity = 1;
-        int minDistance = 100;
-        int randomValue = 600;
-        int startValue = 400;
         int counter = 0;
         int numberType = builders.size();
         Random random = new Random(new Date().getTime());
@@ -36,10 +33,13 @@ public class Generator {
             EntityBuilder builder = null;
             int numberCurrentType = random.nextInt(numberType);
             for (String current : builders.keySet()) {
-                counter++;
                 if (counter == numberCurrentType && !current.equals("player")) {
                     builder = builders.get(current);
+                    if(numberCurrentType == 2) {
+                        System.out.println(builder);
+                    }
                 }
+                counter++;
             }
             counter = 0;
             if (builder != null) {
@@ -49,20 +49,13 @@ public class Generator {
                 if (first.validate("position")) {
                     positionFirst = (Position) first.getComponent("position");
                     sizeFirst = (Size) (first.getComponent("size"));
-                    positionFirst.setPosX(random.nextInt(randomValue) + startValue);
                 }
                 for (Entity second : scene.getEntities()) {
                     Position positionSecond = (Position) second.getComponent("position");
                     Size sizeSecond = (Size) (second.getComponent("size"));
-                    if (minDistance <= positionSecond.getPosX() - (positionFirst.getPosX() + sizeFirst.getWidth()) || minDistance <= positionFirst.getPosX() - (positionSecond.getPosX() + sizeSecond.getWidth())) {
-                        counter++;
-                    }
                 }
-                if (counter == scene.getEntities().size()) {
-                    ArrayList<Entity> entities = scene.getEntities();
-                    entities.add(first);
-                    System.out.println("yep");
-                }
+                ArrayList<Entity> entities = scene.getEntities();
+                entities.add(first);
                 counter = 0;
             }
         }

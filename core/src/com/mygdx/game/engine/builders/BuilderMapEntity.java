@@ -1,5 +1,6 @@
 package com.mygdx.game.engine.builders;
 
+import com.mygdx.game.engine.builders.EntityBuilders.BlockBuilder;
 import com.mygdx.game.engine.builders.EntityBuilders.EnemyBuilder;
 import com.mygdx.game.engine.builders.EntityBuilders.EntityBuilder;
 import com.mygdx.game.engine.builders.EntityBuilders.PlayerBuilder;
@@ -13,6 +14,7 @@ public class BuilderMapEntity {
         builders = new LinkedHashMap<String, EntityBuilder>();
         builders.put("enemy", new EnemyBuilder());
         builders.put("player", new PlayerBuilder());
+        builders.put("block", new BlockBuilder());
     }
 
     public LinkedHashMap<String, EntityBuilder> getBuilders() {
